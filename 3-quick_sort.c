@@ -19,7 +19,7 @@ void swap(int *a, int *b)
  *
  * Return: a positive integer
  */
-size_t partition(int *array, size_t low, size_t high, size_t size)
+size_t partition(int *array, size_t low, size_t high)
 {
 	int pivot = array[high];
 	size_t i = low - 1, j;
@@ -49,7 +49,7 @@ void quick_sort_recursively(int *array, size_t low, size_t high, size_t size)
 	
 	if (low < high)
 	{
-		p_index = partition(array, low, high, size);
+		p_index = partition(array, low, high);
 		print_array(array, size);
 		if (p_index > 0)
 			quick_sort_recursively(array, low, p_index - 1, size);
