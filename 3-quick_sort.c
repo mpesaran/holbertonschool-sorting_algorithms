@@ -16,10 +16,11 @@ void swap(int *a, int *b)
  * @array: array to be check for pivot index
  * @low: lowest index
  * @high: highest index
+ * @size: size of the array
  *
  * Return: a positive integer
  */
-size_t partition(int *array, size_t low, size_t high)
+size_t partition(int *array, size_t low, size_t high, size_t size)
 {
 	int pivot = array[high];
 	size_t i = low - 1, j;
@@ -28,13 +29,19 @@ size_t partition(int *array, size_t low, size_t high)
 	{
 		if (array[j] < pivot)
 		{
-			i++;           
+			i++;
 			if (i != j)
+			{
 				swap(&array[i], &array[j]);
+				print_array(array, size);
+			}
 		}
 	}
 	if (i + 1 != high)
+	{
 		swap(&array[i + 1], &array[high]);
+		print_array(array, size);
+	}
 	return (i + 1);
 }
 /**
@@ -42,15 +49,15 @@ size_t partition(int *array, size_t low, size_t high)
  * @array: array to be sorted
  * @low: lowest index
  * @high: highest index
+ * @size: size of the array
  */
 void quick_sort_recursively(int *array, size_t low, size_t high, size_t size)
 {
 	size_t p_index;
-	
+
 	if (low < high)
 	{
-		p_index = partition(array, low, high);
-		print_array(array, size);
+		p_index = partition(array, low, high, size);
 		if (p_index > 0)
 			quick_sort_recursively(array, low, p_index - 1, size);
 		if (p_index < high)
